@@ -260,7 +260,6 @@ function image_management_post() {
       }
     }
   }
-echo "IMAGE " . $result;
   define('THEME_OPTIONS_POST_RESULTS', $result);
 }
 add_action('theme_options_post', 'image_management_post');

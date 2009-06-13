@@ -88,9 +88,9 @@ function custom_header() {
   $logo_name = "header_logo_image";
   $logo = get_option($logo_name);
   if ($logo != NULL) {
-    remove_action('theme_site_title');
-    remove_action('theme_site_description');
-    add_action('theme_header', 'header_logo_image');
+    remove_action('theme_header', 'theme_site_title');
+    remove_action('theme_header', 'theme_site_description');
+    add_action('theme_header', 'header_logo_image', 1);
 
     echo "<style>";
     echo "#site-logo a { background: transparent url('" . $background . "') no-repeat scroll center top; }";
@@ -111,7 +111,8 @@ function delete_custom_header($name) {
 add_action('delete_snippet', 'delete_favicon');
 
 function header_logo_image() {
-  echo "<div id='site-logo'><a href='" . get_bloginfo('home') . "'><img alt='" . get_bloginfo('name') . "' src='" . get_option('theme_background_image') . "' /></a></div>";  
+  echo "<div id='site-logo'><a href='" . get_bloginfo('home') . "'><img alt='" . get_bloginfo('name') . "' src='" . get_option('header_logo_image') . "' /></a></div>";  
 }
+// header_logo_image() is called in custom_header()
 
 ?>

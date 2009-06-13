@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: dcole07
 Donate link: http://dan-cole.com/
-Tags: code, manager, extension, theme options, image manager, custom header image, post author, favicon, comments
+Tags: Code, Manager, Extension, Theme, Images, Comments, CSS, Formatting
 Requires at least: 2.8
 Tested up to: 2.8
-Stable tag: 0.1
+Stable tag: 0.2
 
 This plugin manages theme customizations.
 
@@ -48,3 +48,6 @@ Your code will need to be in a PHP functions and placed in the correct location 
 
 This plugin will automatically turn off any code snippet if it causes a fatal error, but not necessarily if it has an error or typo. Then on the second page load, that code snippet that failed will not be included and the 'Theme Options Panel' will highlight the failed code snippet.
 
+= How can I insert image addresses into text boxes without copying and pasting the image address? =
+
+By activating the Image Management snippet and using it to manage your images, you can do away with messing with URLs. Option pages that have thickbox running and have `<?php do_action('image_url_input', 'THE_TEXTBOX_NAME'); ?>` after each textbox that deals with images, will for those form fields have an image icon that allows you to select an image visually. 
