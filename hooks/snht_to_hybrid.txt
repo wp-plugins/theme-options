@@ -1,0 +1,10 @@
+// Standard Naming of Hooks in Themes to hybrid Hook Naming Convention
+theme_before_header	hybrid_before_header
+theme_header		hybrid_header
+theme_after_header	hybrid_after_header
+theme_before_content	hybrid_before_content
+theme_after_content	hybrid_after_content
+theme_before_footer	hybrid_before_footer
+theme_footer		hybrid_footer
+theme_after_footer	hybrid_after_footer
+// Please help me extend this, because these are only a few of the hooks.
