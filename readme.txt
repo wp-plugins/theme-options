@@ -17,6 +17,18 @@ This plugin manages theme customization. Everything is managed in the WordPress 
 1. Upload the `theme-options` folder and its contents to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. To use the plugin, go to 'Theme Options Panel' under the 'Appearance' menu in WordPress
+1. Some code snippets may place options on the 'Snippet Options' page or create their own page.
+
+== Features ==
+
+1. Management of code in file and database form.
+1. Backend code editor with code highlighting.
+1. Hook Converting for code snippets.
+1. Activate, copy, create, deactivate, delete, edite, and upload code.
+1. Turns off code snippets that cause fatal errors.
+1. Filtering of code snippets by status, author, storage type, and tags.
+1. Bulk activate, deactivate, and delete.
+1. Pre-packed code snippets: theme image management, favicon, comment highlighting, custom background & logo header, author section in post, and Element formatting. 
 
 == Frequently Asked Questions ==
 
@@ -26,7 +38,7 @@ Every code snippet needs to use WordPress' Hook actions and filters, but if the 
 
 = What themes will the default snippets work for? =
 
-They will work for any theme that uses the 'Standard Naming of Hooks in Themes', along with Thematic and Hybrid. However, you can alway right your own hook converter file and place it in the '.../plugins/theme-options/hooks/' folder. 
+They will work for any theme that uses the 'Standard Naming of Hooks in Themes', along with Thematic and Hybrid. However, you can always write your own hook converter file and place it in the '.../plugins/theme-options/hooks/' folder. 
 
 = What is required to create my own code snippet =
 
