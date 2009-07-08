@@ -65,6 +65,7 @@ function theme_options_panel_post() {
 				break;
 		}
 	}
+  //wp_redirect(get_option('siteurl') . '/wp-admin/themes.php?page=theme_options_panel_page');
 	return $task;
 }
 /*

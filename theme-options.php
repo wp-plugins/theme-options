@@ -4,7 +4,7 @@ Plugin Name: Theme options
 Plugin URI: http://dan-cole.com/
 Description: This plugin adds options to your current theme and allows you to expand and customize the theme without modifying the theme files.
 Author: Dan Cole
-Version: 0.2
+Version: 0.3
 Author URI: http://dan-cole.com/
 */
 

@@ -166,56 +166,58 @@ function fetch_snippets($sortby = 'name', $filters = array()) {
   // Info from folder
   $dir = THEME_SNIPPETS_DIR;
   $dir_handle = opendir($dir);
-  while (false !== ($file_name = readdir($dir_handle))) {
-    if ( !in_array($file_name, array('.', '..', "", null)) ) {
-      $requirements = 0;
-      if ( strtolower(substr($file_name, $end)) == $type ) {
-        $requirements = 1;
-        $location = $dir . $file_name;
-      }
-      elseif ( filetype($dir . $file_name) == "dir" ) {
-        $location = $dir . "/" . $file_name . "/" . $file_name . $type;
-        if (file_exists($location)) {
+  if ($dir_handle != FALSE) {
+    while (false !== ($file_name = readdir($dir_handle))) {
+      if ( !in_array($file_name, array('.', '..', "", null)) ) {
+        $requirements = 0;
+        if ( strtolower(substr($file_name, $end)) == $type ) {
           $requirements = 1;
+          $location = $dir . $file_name;
         }
-      }
-      if ($requirements == 1) {
-        $name = NULL; 
-        $status = NULL; 
-        $author = NULL; 
-        $url = NULL; 
-        $description = NULL; 
-        $tags = NULL; 
-        $switch = NULL; 
+        elseif ( filetype($dir . $file_name) == "dir" ) {
+          $location = $dir . "/" . $file_name . "/" . $file_name . $type;
+          if (file_exists($location)) {
+            $requirements = 1;
+          }
+        }
+        if ($requirements == 1) {
+          $name = NULL; 
+          $status = NULL; 
+          $author = NULL; 
+          $url = NULL; 
+          $description = NULL; 
+          $tags = NULL; 
+          $switch = NULL; 
 
-        $note_handle = fopen($location, 'rb');
-        $note_info = fread($note_handle, filesize($location));
-        fclose($note_handle);
-        $note_data = explode("\n", $note_info);
-        $item = 0;
-        for ($d=0; $d<count($note_data); $d++) {
-          for ($n=0; $n<count($titles); $n++) {
-            $start = strlen($titles[$n]);
-            if ( strtolower(substr($note_data[$d], 0, $start+1)) == $titles[$n] . ":" ) {
-              ${$titles[$n]} = trim(substr($note_data[$d], $start+1));
-              $items++;
-              if ($items == count($titles)) break 2;
+          $note_handle = fopen($location, 'rb');
+          $note_info = fread($note_handle, filesize($location));
+          fclose($note_handle);
+          $note_data = explode("\n", $note_info);
+          $item = 0;
+          for ($d=0; $d<count($note_data); $d++) {
+            for ($n=0; $n<count($titles); $n++) {
+              $start = strlen($titles[$n]);
+              if ( strtolower(substr($note_data[$d], 0, $start+1)) == $titles[$n] . ":" ) {
+                ${$titles[$n]} = trim(substr($note_data[$d], $start+1));
+                $items++;
+                if ($items == count($titles)) break 2;
+              }
             }
           }
-        }
-        if ($name != NULL) {
-          $switch = get_option('snippet_' . $name . '_switch'); // The circuit breaker switch
-          if ($switch == FALSE || $switch == "") {
-            $switch = 'once'; // on, off, or once
-            update_option('snippet_' . $name . '_switch', $switch);
+          if ($name != NULL) {
+            $switch = get_option('snippet_' . $name . '_switch'); // The circuit breaker switch
+            if ($switch == FALSE || $switch == "") {
+              $switch = 'once'; // on, off, or once
+              update_option('snippet_' . $name . '_switch', $switch);
+            }
+            $status = get_option('snippet_' . $name . '_status'); 
+            $info[] = array('name'=>$name, 'status'=>$status, 'author'=>$author, 'url'=>$url, 'description'=>$description, 'tags'=>$tags, 'switch'=>$switch, 'type'=>'File');
           }
-          $status = get_option('snippet_' . $name . '_status'); 
-          $info[] = array('name'=>$name, 'status'=>$status, 'author'=>$author, 'url'=>$url, 'description'=>$description, 'tags'=>$tags, 'switch'=>$switch, 'type'=>'File');
         }
       }
     }
+    closedir($dir_handle);
   }
-  closedir($dir_handle);
 
   // Info from database
   $snippets = get_option('database_snippets');
