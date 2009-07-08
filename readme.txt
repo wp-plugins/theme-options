@@ -63,7 +63,7 @@ By activating the Image Management snippet and using it to manage your images, y
 1. The Theme Options Plugin manages code, unlike other methods in which unrelated code gets mixed together.
 2. Code snippets can be edited throught the backend and are saved in the database, rather than in a file.
 
-== Release History ==
+== Changelog ==
 
 = Version 0.3 (July 7, 2009) =
 * Expanded the hooks that will be converted in Thematic and Hybrid
