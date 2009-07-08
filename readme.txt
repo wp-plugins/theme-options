@@ -67,6 +67,8 @@ By activating the Image Management snippet and using it to manage your images, y
 
 = Version 0.3 (July 7, 2009) =
 * Expanded the hooks that will be converted in Thematic and Hybrid
+* Added Prodigy theme hooks to the converter.
+* Changed how the converter does its job.
 
 = Version 0.2 (June 13, 2009) =
 * Fixed Image Management snippet's logo url inserter.
