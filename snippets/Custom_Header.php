@@ -99,16 +99,17 @@ function custom_header() {
 }
 add_action('wp_head', 'custom_header');
 
-function delete_custom_header($name) {
-  if ($name == 'Custom Header') {
-    delete_option('header_background_image');
-    delete_option('header_background_repeat');
-    delete_option('header_background_scroll');
-    delete_option('header_background_align');
-    delete_option('header_logo_image');
+function custom_header_options($list, $name = NULL) {
+  if ($name == 'Custom Header' || $name == NULL) {
+    $list[] = 'header_background_image';
+    $list[] = 'header_background_repeat';
+    $list[] = 'header_background_scroll';
+    $list[] = 'header_background_align';
+    $list[] = 'header_logo_image';
   }
+  return $list;
 }
-add_action('delete_snippet', 'delete_favicon');
+add_filter('snippet_options_list', 'custom_header_options');
 
 function header_logo_image() {
   echo "<div id='site-logo'><a href='" . get_bloginfo('home') . "'><img alt='" . get_bloginfo('name') . "' src='" . get_option('header_logo_image') . "' /></a></div>";  

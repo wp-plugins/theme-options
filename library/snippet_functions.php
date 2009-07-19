@@ -113,7 +113,10 @@ function delete_snippet($name) {
       rmdir($snippet_dir);
     }
   }
-  do_action('delete_snippet', $name);
+  $snippet_options = apply_filters('snippet_options_list', array(), $name);
+  foreach ($snippet_options as $option) {
+    delete_option($option);
+  }
   delete_option('snippet_' . $name . '_status');
   delete_option('snippet_' . $name . '_switch');
   return $result;
@@ -297,11 +300,11 @@ function filter_data($info, $filters) {
     if ($add_status == TRUE && $add_author == TRUE && $add_type == TRUE && $add_tags == TRUE) $new[] = $info[$r];
 
     // Make a list of Authors
-    if (!in_array($info[$r]['author'], $authors_list)) $authors_list[] = $info[$r]['author'];
+    if (!in_array($info[$r]['author'], $authors_list) && !empty($info[$r]['author'])) $authors_list[] = $info[$r]['author'];
 
     // Make a list of Tags
     foreach ($tags as $tag) {
-      if (!in_array($tag, $tags_list)) $tags_list[] = $tag;
+      if (!in_array($tag, $tags_list) && !empty($tag)) $tags_list[] = $tag;
     }
   }
   sort($authors_list);

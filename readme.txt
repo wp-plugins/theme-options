@@ -1,16 +1,18 @@
 === Plugin Name ===
 Contributors: dcole07
-Donate link: http://dan-cole.com/
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=UQUZ6W8KXES3J&lc=US&item_name=Dan%20Cole&item_number=theme%20options%20plugin&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: Code, Manager, Extension, Theme, Images, Comments, CSS, Formatting
 Requires at least: 2.8
 Tested up to: 2.8.1
-Stable tag: 0.3
+Stable tag: 0.4
 
 This plugin manages theme customizations.
 
 == Description ==
 
 This plugin manages theme customization. Everything is managed in the WordPress Backend. Code snippets can be activated, copied, created, deactivated, deleted, edited, and uploaded.
+
+Please help improve this plugin by suggesting new features and code snippets. This can be done by creating a New Ticket through the form at: http://dan-cole.com/theme-options/trac/newticket
 
 == Installation ==
 
@@ -24,7 +26,6 @@ This plugin manages theme customization. Everything is managed in the WordPress 
 
 1. Management of code in file and database form.
 1. Backend code editor with code highlighting.
-1. Hook Converting for code snippets.
 1. Activate, copy, create, deactivate, delete, edite, and upload code.
 1. Turns off code snippets that cause fatal errors.
 1. Filtering of code snippets by status, author, storage type, and tags.
@@ -38,13 +39,9 @@ This plugin manages theme customization. Everything is managed in the WordPress 
 
 Every code snippet needs to use WordPress' Hook actions and filters, but if the hook is not within your theme, these snippets will have no place to attach to.
 
-= Why are there no snippets listed under Theme Options Panel? =
-
-The default snippets are located in a the folder `../wp-content/plugins/theme-options/snippets`. If that folder does not have the right permissions, it can't be read and your snippets can't be listed.
-
 = What themes will the default snippets work for? =
 
-They will work for any theme that uses the 'Standard Naming of Hooks in Themes', along with Thematic, Hybrid, and Prodigy. However, you can always write your own hook converter file and place it in the '.../plugins/theme-options/hooks/' folder. 
+They work for any modern, up-to-date theme.
 
 = What is required to create my own code snippet =
 
@@ -65,10 +62,17 @@ By activating the Image Management snippet and using it to manage your images, y
 
 == Changelog ==
 
+= Version 0.4 (July 2009) =
+* Added the Read More code snippet.
+* Fixed user permissions.
+* Reverted Hook Converting, likely going to be removed.
+* Added Import and Export for code snippets and settings.
+* Removed hook converting.
+* Limited the scope of JavaScript to this plugin only.
+* Increased checking filter values, to make sure empty ones aren't displayed. 
+
 = Version 0.3 (July 7, 2009) =
 * Expanded the hooks that will be converted in Thematic and Hybrid
-* Added Prodigy theme hooks to the converter.
-* Changed how the converter does its job.
 
 = Version 0.2 (June 13, 2009) =
 * Fixed Image Management snippet's logo url inserter.

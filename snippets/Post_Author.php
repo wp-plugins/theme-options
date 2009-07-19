@@ -60,11 +60,12 @@ function post_author_snippet($input) {
 if (get_option("post_author_location") == "before") add_action('theme_before_content', 'post_author_snippet');
 else add_action('theme_after_content', 'post_author_snippet');
 
-function delete_post_author_snippet($name) {
-  if ($name == 'Post Author') {
-    delete_option("post_author_location");
+function post_author_snippet_options($list, $name = NULL) {
+  if ($name == 'Post Author' || $name == NULL) {
+    $list[] = 'post_author_location';
   }
+  return $list;
 }
-add_action('delete_snippet', 'delete_post_author_snippet');
+add_filter('snippet_options_list', 'post_author_snippet_options');
 
 ?>

@@ -32,7 +32,7 @@ function format_snippet_page() {
       <h3><?php echo $name; ?></h3>
       <div class="inside">
       <table class="form-table" id="format_<?php echo $name; ?>_table">
-        <?php format_snippet_options($name); ?>
+        <?php format_snippet_settings($name); ?>
       </table>
       </div>
       </div><!-- End div class='postbox' -->
@@ -100,8 +100,8 @@ function format_snippet() {
 }
 add_action( "wp_head", 'format_snippet' );
 
-function delete_format_snippet($name) {
-  if ($name == 'Format') {
+function format_snippet_options($list, $name = NULL) {
+  if ($name == 'Format' || $name == NULL) {
     $items = array();
     $items = apply_filters('format_font_elements', $items);
 
@@ -111,15 +111,15 @@ function delete_format_snippet($name) {
       $name = explode(":", $items[$i]);
       $name = trim($name[1]);
       for ($f = 0; $f < count($fields); $f++) {
-        delete_option($name . $fields);
+        $list[] = $name . $fields;
       }
     }
-    do_action('delete_format_snippet');
   }
+  return $list;
 }
-add_action('delete_snippet', 'delete_format_snippet');
+add_filter('snippet_options_list', 'format_snippet_options');
 
-function format_snippet_options($name) {
+function format_snippet_settings($name) {
 ?>
   <tr valign="top">
     <th scope="row"><label for="<?php echo $name . '_font-family'; ?>"><?php echo _e('Font-Family'); ?></label></th>
@@ -167,7 +167,7 @@ function format_snippet_options($name) {
       <span class="setting-description"><?php _e('Sets the distance between lines. Can be <b>normal</b>, number, length, or percentage.'); ?></span>
     </td>
   </tr>
-  <?php do_action('format_snippet_options', $name);
+  <?php do_action('format_snippet_settings', $name);
 }
 
 function format_snippet_javascript() {

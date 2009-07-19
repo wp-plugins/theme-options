@@ -39,11 +39,12 @@ function favicon_snippet() {
 }
 add_action('wp_head', 'favicon_snippet');
 
-function delete_favicon_snippet($name) {
-  if ($name == 'Favicon') {
-    delete_option('favicon_url');
+function favicon_snippet_options($list, $name = NULL) {
+  if ($name == 'Favicon' || $name == NULL) {
+    $list[] = 'favicon_url';
   }
+  return $list;
 }
-add_action('delete_snippet', 'delete_favicon_snippet');
+add_filter('snippet_options_list', 'favicon_snippet_options');
 
 ?>

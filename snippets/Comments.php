@@ -69,14 +69,15 @@ function comments_snippet() {
 }
 add_action('theme_options_snippets_css', 'comments_snippet');
 
-function delete_comments_snippet($name) {
-  if ($name == 'Comments') {
-    delete_option('comments-author');
-    delete_option('comments-even');
-    delete_option('comments-odd');
+function comments_snippet_options($list, $name = NULL) {
+  if ($name == 'Comments' || $name == NULL) {
+    $list[] = 'comments-author';
+    $list[] = 'comments-even';
+    $list[] = 'comments-odd';
   }
+  return $list;
 }
-add_action('delete_snippet', 'delete_comments_snippet');
+add_filter('snippet_options_list', 'comments_snippet_options');
 
 function default_comment_color_options($output, $section) {
   $output .= "<span class='color_member' title='#FFFFFF'><span title='#FFFFFF' class='color_box' style='padding: 0 10px 10px 10px; background: #FFFFFF;'>&nbsp;</span></span>";
