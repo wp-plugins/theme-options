@@ -3,8 +3,8 @@ Contributors: dcole07
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=UQUZ6W8KXES3J&lc=US&item_name=Dan%20Cole&item_number=theme%20options%20plugin&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: Code, Manager, Extension, Theme, Images, Comments, CSS, Formatting
 Requires at least: 2.8
-Tested up to: 2.8.1
-Stable tag: 0.4
+Tested up to: 2.8.3
+Stable tag: 0.4.1
 
 This plugin manages theme customizations.
 

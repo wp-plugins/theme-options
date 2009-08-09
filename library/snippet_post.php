@@ -59,7 +59,7 @@ function theme_options_panel_post() {
           $fp = fopen($file_path, 'r');
           $code = fread($fp, filesize($file_path));
           fclose($fp);
-          //add_snippet($code);
+          add_snippet($code);
         }
         break;
       case 'modify':
