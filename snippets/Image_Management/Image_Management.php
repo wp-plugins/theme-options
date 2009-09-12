@@ -21,8 +21,7 @@ define( 'IMAGE_MGMT_IMAGE_DIR', dirname(dirname(__FILE__)) . '/images/' );
 function image_management_page() {
   if( isset($_REQUEST['action']) && !empty($_REQUEST['action']) ) $action = $_REQUEST['action'];
 
-  if ($_REQUEST["image_table"]) $table_name = $_REQUEST["image_table"];
-  else $table_name = "theme_options_images";
+  $table_name = "theme_options_images";
 
   $filter_size = 0;
   $filter_tag = 0;
@@ -204,8 +203,7 @@ add_action('admin_menu', 'attach_image_management_snippet_page');
 function image_management_post() {
   $result = 'nothing';
   if (isset($_GET['page']) && $_GET['page'] == 'image_management_page' && isset($_REQUEST['action'])) { 
-    if ($_REQUEST["image_table"]) $table_name = $_REQUEST["image_table"];
-    else $table_name = "theme_options_images";
+    $table_name = "theme_options_images";
 
     $filter_size = 0;
     $filter_tag = 0;

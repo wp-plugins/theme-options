@@ -62,6 +62,11 @@ By activating the Image Management snippet and using it to manage your images, y
 
 == Changelog ==
 
+= Version 0.5 (September 11, 2009) =
+* Added Color Management Snippet
+* Improved Format Snippet
+* Improved code base
+
 = Version 0.4.1 (August 9, 2009) =
 * Fixed PHP import problem
 
