@@ -1,0 +1,8 @@
+div.listbox { border: 1px solid #AAA; padding: 1px; cursor: text; -moz-border-radius: 3px; font-size: 12px; }
+div.listbox ul { padding: 0; margin: 0; overflow: hidden; }
+li.listbox-item { background: #F1F1F1; line-height: 2em; display: block; position: relative; -moz-border-radius: 10px; padding: 0 4px; margin: 1px; float: left; border: 1px solid #E3E3E3; color: #222; cursor: default; }
+li.listbox-item span { color: #AAA; text-decoration: none; cursor: pointer; padding-left: 2px; }
+li.listbox-input { display: block; float: left; position: relative; margin: 2px; padding: 0 4px; line-height: 2em;}
+li.listbox-input input { border: none; }
+li.listbox-item.listbox-focus { background: #E3E3E3; border: 2px solid #BBB; margin: 0; }
+li.listbox-item:hover { background: #E3E3E3 }

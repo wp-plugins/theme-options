@@ -32,159 +32,167 @@ function image_management_page() {
     $filter_tag = $_REQUEST["tag"];
   }
 
-	$image_data = fetch_image_mgmt_images($filter_size, $filter_tag, $table_name);
+  $image_data = fetch_image_mgmt_images($filter_size, $filter_tag, $table_name);
 ?>
-	<div class='wrap'>
-	<form name='image' method='post' action='themes.php?page=image_management_page' enctype='multipart/form-data'>
-<?php	wp_nonce_field('update-options'); ?>
-	<h2><?php _e('Images'); ?></h2>
+  <div class='wrap'>
+  <form name='image' method='post' action='themes.php?page=image_management_page' enctype='multipart/form-data'>
+<?php  wp_nonce_field('update-options'); ?>
+  <h2><?php _e('Images'); ?></h2>
 <?php
-	if (THEME_OPTIONS_POST_RESULTS == 'false') {
-		echo "<div class='error'><p>"; _e('There was a problem while process the information you submitted.'); echo "</p></div>";
-	}
-	elseif (THEME_OPTIONS_POST_RESULTS == 'persmission_denied') {
-		echo "<div class='error'><p>"; _e('You did <b>not</b> have the correct server permissions to complete the task.'); echo "</p></div>";
-	}
-	elseif (THEME_OPTIONS_POST_RESULTS == 'uploaded') {
-		echo "<div class='updated'><p>"; _e('Your image was <b>successfully</b> uploaded.'); echo "</p></div>";
-	}
+  if (THEME_OPTIONS_POST_RESULTS == 'false') {
+    echo "<div class='error'><p>"; _e('There was a problem while process the information you submitted.'); echo "</p></div>";
+  }
+  elseif (THEME_OPTIONS_POST_RESULTS == 'persmission_denied') {
+    echo "<div class='error'><p>"; _e('You did <b>not</b> have the correct server permissions to complete the task.'); echo "</p></div>";
+  }
+  elseif (THEME_OPTIONS_POST_RESULTS == 'uploaded') {
+    echo "<div class='updated'><p>"; _e('Your image was <b>successfully</b> uploaded.'); echo "</p></div>";
+  }
 ?>
-	<div class='tablenav'>
-		<div class='alignleft'>
-			<input type="submit" class="button-secondary delete" name="delete-selected" value="Delete"/>
-			<select name="tag">
-				<option value="0" selected="selected">Show all Tags</option>
-				<?php
-				for ($s=0; $s<count($image_data[5]); $s++) {
-					echo "<option value='" . $image_data[5][$s] . "'>" . $image_data[5][$s] . "</option>";
-				}
-				?>
-			</select>
-			<input type="submit" class="button-secondary" name="filter" value="Filter" id="image-query-submit"/>
-		</div>
-		<br class='clear'>
-	</div>
-	<br class='clear'>
-	<table class='widefat'>
-		<thead>
-			<tr>
-				<th class='check-column'><input type='checkbox'></th>
-				<th><?php _e('Image'); ?></th>
-				<th><?php _e('Name'); ?></th>
-				<th><?php _e('Size (px)'); ?></th>
-				<th><?php _e('Description'); ?></th>
-				<th><?php _e('Tags'); ?></th>
-			</tr>
-		</thead>
-		<tfoot>
-			<tr>
-				<th class='check-column'><input type='checkbox'></th>
-				<th><?php _e('Image'); ?></th>
-				<th><?php _e('Name'); ?></th>
-				<th><?php _e('Size (px)'); ?></th>
-				<th><?php _e('Description'); ?></th>
-				<th><?php _e('Tags'); ?></th>
-			</tr>
-		</tfoot>
-		<tbody>
-			<?php
-			for ($r=0; $r<count($image_data[0]); $r++) {
-				echo "<tr class='"; 
-					switch ($r%2) { case 1: echo "alternate"; break; case 2: echo ""; break; }
-				echo "'>";
-				echo "<th class='manage-column column-cb check-column'><input type='checkbox' value='" . $image_data[0][$r] . "' name='checked[]'></th>";
-				echo "<td><a href='" . IMAGE_MGMT_IMAGE_URL . $image_data[1][$r] . "'><img class='theme_image' title='" . $image_data[0][$r] . "' src='" . IMAGE_MGMT_IMAGE_URL . $image_data[1][$r] . "'/></a><br />
+  <div class='tablenav'>
+    <div class='alignleft'>
+      <input type="submit" class="button-secondary delete" name="delete-selected" value="Delete"/>
+      <select name="size">
+        <option value="0" selected="selected"><?php _e('Show all Sizes'); ?></option>
+        <?php
+        for ($s=0; $s<count($image_data[5]); $s++) {
+          echo "<option value='" . $image_data[5][$s] . "'>" . $image_data[5][$s] . "</option>";
+        }
+        ?>
+      </select>
+      <select name="tag">
+        <option value="0" selected="selected"><?php _e('Show all Tags'); ?></option>
+        <?php
+        for ($s=0; $s<count($image_data[6]); $s++) {
+          echo "<option value='" . $image_data[6][$s] . "'>" . $image_data[6][$s] . "</option>";
+        }
+        ?>
+      </select>
+      <input type="submit" class="button-secondary" name="filter" value="Filter" id="image-query-submit"/>
+    </div>
+    <br class='clear'>
+  </div>
+  <br class='clear'>
+  <table class='widefat'>
+    <thead>
+      <tr>
+        <th class='check-column'><input type='checkbox'></th>
+        <th><?php _e('Image'); ?></th>
+        <th><?php _e('Name'); ?></th>
+        <th><?php _e('Size (px)'); ?></th>
+        <th><?php _e('Description'); ?></th>
+        <th><?php _e('Tags'); ?></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th class='check-column'><input type='checkbox'></th>
+        <th><?php _e('Image'); ?></th>
+        <th><?php _e('Name'); ?></th>
+        <th><?php _e('Size (px)'); ?></th>
+        <th><?php _e('Description'); ?></th>
+        <th><?php _e('Tags'); ?></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <?php
+      for ($r=0; $r<count($image_data[0]); $r++) {
+        echo "<tr class='"; 
+          switch ($r%2) { case 1: echo "alternate"; break; case 2: echo ""; break; }
+        echo "'>";
+        echo "<th class='manage-column column-cb check-column'><input type='checkbox' value='" . $image_data[0][$r] . "' name='checked[]'></th>";
+        echo "<td><a href='" . IMAGE_MGMT_IMAGE_URL . $image_data[1][$r] . "'><img class='theme_image' title='" . $image_data[0][$r] . "' src='" . IMAGE_MGMT_IMAGE_URL . $image_data[1][$r] . "'/></a><br />
 <span class='inline'><a title='Edit this image group' href='themes.php?page=image_management_page&action=edit&image=" . $image_data[1][$r] . "'>Edit</a> | </span>
 <span class='delete'><a href='themes.php?page=image_management_page&action=delete&image=" . $image_data[1][$r] . "' title='Delete this image' class='submitdelete'>Delete</a> | </span>
 <span class='view'><a rel='permalink' title='View this image' href='" . IMAGE_MGMT_IMAGE_URL . $image_data[1][$r] . "'>View</a></span>
 </td>";
-				echo "<td><strong>" . $image_data[0][$r] . "</strong></td>";
-				echo "<td>" . $image_data[2][$r] . "</td>";
-				echo "<td>" . $image_data[3][$r] . "</td>";
-				echo "<td>";
-				echo implode(", ", $image_data[4][$r]);
-				echo "</td>";
-				echo "</tr>";
-			}
-			?>
-		</tbody>
-	</table>
-	<hr />
+        echo "<td><strong>" . $image_data[0][$r] . "</strong></td>";
+        echo "<td>" . $image_data[2][$r] . "</td>";
+        echo "<td>" . $image_data[3][$r] . "</td>";
+        echo "<td>";
+        echo implode(", ", $image_data[4][$r]);
+        echo "</td>";
+        echo "</tr>";
+      }
+      ?>
+    </tbody>
+  </table>
+  <hr />
 <?php
 if ( ($action == "edit") || isset($fail) ) {
-	for ($e=0; $e<count($image_data[1]); $e++) {
-		if ($image_data[1][$e] == $_GET['image'] ) {
-			$name = $image_data[0][$e];
-			$url = $image_data[1][$e];
-			$size = $image_data[2][$e];
-			$description = $image_data[3][$e];
-			$tags = implode(", ", $image_data[4][$e]);
-		}
-	}
+  for ($e=0; $e<count($image_data[1]); $e++) {
+    if ($image_data[1][$e] == $_GET['image'] ) {
+      $name = $image_data[0][$e];
+      $url = $image_data[1][$e];
+      $size = $image_data[2][$e];
+      $description = $image_data[3][$e];
+      $tags = implode(", ", $image_data[4][$e]);
+    }
+  }
 ?>
-	<h3><?php _e('Edit image Group'); ?></h3>
-	<table class="form-table">
-		<tbody>
-		<tr valign="top">
-			<th scope="row"><label for="editname">Image Name</label></th>
-			<td><input type="text" class="regular-text" value="<?php echo (isset($fail)) ? $_POST['editname'] : $name; ?>" name="editname"/></td>
-		</tr>
-		<tr valign="top">
-			<th scope="row"><label for="editdescription">Description</label></th>
-			<td><input type="text" class="regular-text" value="<?php echo (isset($fail)) ? $_POST['editdescription'] : $description; ?>" name="editdescription"/></td>
-		</tr>
-		<tr valign="top">
-			<th scope="row"><label for="edittags">Tags</label></th>
-			<td>
-				<input type="text" class="regular-text" value="<?php echo (isset($fail)) ? $_POST['edittags'] : $tags; ?>" name="edittags"/>
-				<span class="setting-description">Seperate tags with a comma.</span>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-	<p class="submit">
-	<input type="hidden" name="editurl" value="<?php echo (isset($fail)) ? $_POST['editurl'] : $url; ?>" />
-	<input type="hidden" name="action" value="save_edit" />
-	<input type="submit" name="Submit" value="<?php _e('Edit image Group', 'mt_trans_domain' ) ?>" />
-	</p>
+  <h3><?php _e('Edit image Group'); ?></h3>
+  <table class="form-table">
+    <tbody>
+    <tr valign="top">
+      <th scope="row"><label for="editname">Image Name</label></th>
+      <td><input type="text" class="regular-text" value="<?php echo (isset($fail)) ? $_POST['editname'] : $name; ?>" name="editname"/></td>
+    </tr>
+    <tr valign="top">
+      <th scope="row"><label for="editdescription">Description</label></th>
+      <td><input type="text" class="regular-text" value="<?php echo (isset($fail)) ? $_POST['editdescription'] : $description; ?>" name="editdescription"/></td>
+    </tr>
+    <tr valign="top">
+      <th scope="row"><label for="edittags">Tags</label></th>
+      <td>
+        <input type="text" class="regular-text" value="<?php echo (isset($fail)) ? $_POST['edittags'] : $tags; ?>" name="edittags"/>
+        <span class="setting-description">Seperate tags with a comma.</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p class="submit">
+  <input type="hidden" name="editurl" value="<?php echo (isset($fail)) ? $_POST['editurl'] : $url; ?>" />
+  <input type="hidden" name="action" value="save_edit" />
+  <input type="submit" name="Submit" value="<?php _e('Edit image Group', 'mt_trans_domain' ) ?>" />
+  </p>
 <?php
 }
 else {
 ?>
-	<h3><?php _e('Add Image'); ?></h3>
-	<table class="form-table">
-		<tbody>
-		<tr valign="top">
-			<th scope="row"><label for="image_file">Image File</label></th>
-			<td><input type="hidden" value="2097152" name="max_file_size"/><input name="image_file" type="file" /></td>
-		</tr>
-		<tr valign="top">
-			<th scope="row"><label for="newname">Image Name</label></th>
-			<td><input type="text" class="regular-text" value="<?php if (!isset($add_group_error)) echo $_POST['newname']; ?>" name="newname"/></td>
-		</tr>
-		<tr valign="top">
-			<th scope="row"><label for="newdescription">Description</label></th>
-			<td><input type="text" class="regular-text" value="<?php if (!isset($add_group_error)) echo $_POST['newdescription']; ?>" name="newdescription"/></td>
-		</tr>
-		<tr valign="top">
-			<th scope="row"><label for="newtags">Tags</label></th>
-			<td>
-				<input type="text" class="regular-text" value="<?php if (!isset($add_group_error)) echo $_POST['newtags']; ?>" name="newtags"/>
-				<span class="setting-description">Seperate tags with a comma.</span>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-	<p class="submit">
-	<input type="hidden" name="action" value="add" />
-	<input type="submit" name="Submit" value="<?php _e('Upload Image', 'mt_trans_domain' ) ?>" />
-	</p>
+  <h3><?php _e('Add Image'); ?></h3>
+  <table class="form-table">
+    <tbody>
+    <tr valign="top">
+      <th scope="row"><label for="image_file">Image File</label></th>
+      <td><input type="hidden" value="2097152" name="max_file_size"/><input name="image_file" type="file" /></td>
+    </tr>
+    <tr valign="top">
+      <th scope="row"><label for="newname">Image Name</label></th>
+      <td><input type="text" class="regular-text" value="<?php if (!isset($add_group_error)) echo $_POST['newname']; ?>" name="newname"/></td>
+    </tr>
+    <tr valign="top">
+      <th scope="row"><label for="newdescription">Description</label></th>
+      <td><input type="text" class="regular-text" value="<?php if (!isset($add_group_error)) echo $_POST['newdescription']; ?>" name="newdescription"/></td>
+    </tr>
+    <tr valign="top">
+      <th scope="row"><label for="newtags">Tags</label></th>
+      <td>
+        <input type="text" class="regular-text" value="<?php if (!isset($add_group_error)) echo $_POST['newtags']; ?>" name="newtags"/>
+        <span class="setting-description">Seperate tags with a comma.</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p class="submit">
+  <input type="hidden" name="action" value="add" />
+  <input type="submit" name="Submit" value="<?php _e('Upload Image', 'mt_trans_domain' ) ?>" />
+  </p>
 <?php
 } // End Else statement, add image
-?>	
-	</form>
-	</div>
-	<?php 
+?>  
+  </form>
+  </div>
+  <?php 
 } // End function image_management_page
 
 function attach_image_management_snippet_page() {
@@ -265,10 +273,10 @@ function image_management_post() {
 add_action('theme_options_post', 'image_management_post');
 
 function create_images_table($table_name) {
-	global $wpdb;
-	if (!$table_name) {
-		$table_name = "theme_options_images";
-	}
+  global $wpdb;
+  if (!$table_name) {
+    $table_name = "theme_options_images";
+  }
   if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
     if (mkdir(IMAGE_MGMT_IMAGE_DIR, 0700)) {
       $sql = "CREATE TABLE " . $table_name . " (
@@ -278,9 +286,9 @@ function create_images_table($table_name) {
       description text NOT NULL,
       tags text NOT NULL
       );";
-		  require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); //Get dbDelta function to insert sql data
-		  dbDelta($sql); //Insert sql data through special WordPress function
-	  }
+      require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); //Get dbDelta function to insert sql data
+      dbDelta($sql); //Insert sql data through special WordPress function
+    }
   }
   else {
     return 'permission_denied';
@@ -288,75 +296,75 @@ function create_images_table($table_name) {
 }
 
 function fetch_image_mgmt_images($size = 0, $filter_tag = 0, $table_name) {
-	global $wpdb;
-	if (!$table_name) {
-		$table_name = "theme_options_images";
-	}
-	create_images_table($table_name);
-	// Get Data and filter out all but a single Author if requested
-	if ($size) {
-		$names = $wpdb->get_col("SELECT name FROM " . $table_name . " WHERE size='" . $size . "'");
-		$urls = $wpdb->get_col("SELECT url FROM " . $table_name . " WHERE size='" . $size . "'");
-		$sizes = $wpdb->get_col("SELECT size FROM " . $table_name . " WHERE size='" . $size . "'");
-		$descriptions = $wpdb->get_col("SELECT description FROM " . $table_name . " WHERE size='" . $size . "'");
-		$pre_tags = $wpdb->get_col("SELECT tags FROM " . $table_name . " WHERE size='" . $size . "'");
-	}
-	else {
-		$names = $wpdb->get_col("SELECT name FROM " . $table_name);
-		$urls = $wpdb->get_col("SELECT url FROM " . $table_name);
-		$sizes = $wpdb->get_col("SELECT size FROM " . $table_name);
-		$descriptions = $wpdb->get_col("SELECT description FROM " . $table_name);
-		$pre_tags = $wpdb->get_col("SELECT tags FROM " . $table_name);
-	}
+  global $wpdb;
+  if (!$table_name) {
+    $table_name = "theme_options_images";
+  }
+  create_images_table($table_name);
+  // Get Data and filter out all but a single Author if requested
+  if ($size) {
+    $names = $wpdb->get_col("SELECT name FROM " . $table_name . " WHERE size='" . $size . "'");
+    $urls = $wpdb->get_col("SELECT url FROM " . $table_name . " WHERE size='" . $size . "'");
+    $sizes = $wpdb->get_col("SELECT size FROM " . $table_name . " WHERE size='" . $size . "'");
+    $descriptions = $wpdb->get_col("SELECT description FROM " . $table_name . " WHERE size='" . $size . "'");
+    $pre_tags = $wpdb->get_col("SELECT tags FROM " . $table_name . " WHERE size='" . $size . "'");
+  }
+  else {
+    $names = $wpdb->get_col("SELECT name FROM " . $table_name);
+    $urls = $wpdb->get_col("SELECT url FROM " . $table_name);
+    $sizes = $wpdb->get_col("SELECT size FROM " . $table_name);
+    $descriptions = $wpdb->get_col("SELECT description FROM " . $table_name);
+    $pre_tags = $wpdb->get_col("SELECT tags FROM " . $table_name);
+  }
 
-	$images = array();
-	foreach ((array)$pre_images as $group) {
-		$images[] = unserialize($group);
-	}
-	$all_sizes = $wpdb->get_col("SELECT size FROM " . $table_name);
-	$all_pre_tags = $wpdb->get_col("SELECT tags FROM " . $table_name);
+  $images = array();
+  foreach ((array)$pre_images as $group) {
+    $images[] = unserialize($group);
+  }
+  $all_sizes = $wpdb->get_col("SELECT size FROM " . $table_name);
+  $all_pre_tags = $wpdb->get_col("SELECT tags FROM " . $table_name);
 
-	// Get list of all Authors and Tags
-	$size_list = array();
-	foreach ((array)$all_sizes as $size) {
-		if (!in_array($size, $size_list)) $size_list[] = $size;
-	}
-	$tag_list = array();
-	foreach ((array)$all_pre_tags as $tags_list) {
-		$temp = unserialize($tags_list);
-		foreach ((array)$temp as $tag) {
-			if (!in_array($tag, $tag_list)) $tag_list[] = $tag;
-		}
-	}
-	$tags = array();
-	foreach ((array)$pre_tags as $tags_list) {
-		$tags[] = unserialize($tags_list);
-	}
-	// Filter out all but a single tag if requested
-	if ($filter_tag != "0") {
-		$fetch = array( array(), array(), array(), array(), array(), $author_list, $tag_list );
-		for ($f=0; $f<count($names); $f++) {
-			if (in_array($filter_tag, $tags[$f])) {
-				$fetch[0][] = $names[$f];
-				$fetch[1][] = $urls[$f];
-				$fetch[2][] = $sizes[$f];
-				$fetch[3][] = $descriptions[$f];
-				$fetch[4][] = $tags[$f];
-			}
-		}
-	}
-	else {
-		// Put data together
-		$fetch = array();
-		$fetch[] = $names;
-		$fetch[] = $urls;
-		$fetch[] = $sizes;
-		$fetch[] = $descriptions;
-		$fetch[] = $tags;
-		$fetch[] = $size_list;
-		$fetch[] = $tag_list;
-	}
-	return $fetch;
+  // Get list of all Authors and Tags
+  $size_list = array();
+  foreach ((array)$all_sizes as $size) {
+    if (!in_array($size, $size_list)) $size_list[] = $size;
+  }
+  $tag_list = array();
+  foreach ((array)$all_pre_tags as $tags_list) {
+    $temp = unserialize($tags_list);
+    foreach ((array)$temp as $tag) {
+      if (!in_array($tag, $tag_list)) $tag_list[] = $tag;
+    }
+  }
+  $tags = array();
+  foreach ((array)$pre_tags as $tags_list) {
+    $tags[] = unserialize($tags_list);
+  }
+  // Filter out all but a single tag if requested
+  if ($filter_tag != "0") {
+    $fetch = array( array(), array(), array(), array(), array(), $size_list, $tag_list );
+    for ($f=0; $f<count($names); $f++) {
+      if (in_array($filter_tag, $tags[$f])) {
+        $fetch[0][] = $names[$f];
+        $fetch[1][] = $urls[$f];
+        $fetch[2][] = $sizes[$f];
+        $fetch[3][] = $descriptions[$f];
+        $fetch[4][] = $tags[$f];
+      }
+    }
+  }
+  else {
+    // Put data together
+    $fetch = array();
+    $fetch[] = $names;
+    $fetch[] = $urls;
+    $fetch[] = $sizes;
+    $fetch[] = $descriptions;
+    $fetch[] = $tags;
+    $fetch[] = $size_list;
+    $fetch[] = $tag_list;
+  }
+  return $fetch;
 }
 
 function add_images($table_name, $name, $url, $size, $description, $tags) {
@@ -369,28 +377,28 @@ function add_images($table_name, $name, $url, $size, $description, $tags) {
 }
 
 function delete_images($table_name, $url) {
-	if (is_writable(IMAGE_MGMT_IMAGE_DIR)) {
-		global $wpdb;
-		$insert = "DELETE FROM " . $table_name . " WHERE url='" . $url . "'";
-		$result = $wpdb->query( $insert );
+  if (is_writable(IMAGE_MGMT_IMAGE_DIR)) {
+    global $wpdb;
+    $insert = "DELETE FROM " . $table_name . " WHERE url='" . $url . "'";
+    $result = $wpdb->query( $insert );
 
-		unlink(IMAGE_MGMT_IMAGE_DIR . $url); // Delete the image file
-		return $result;
-	}
-	else {
-		define('THEME_OPTIONS_POST_RESULTS', 'persmission_denied');
-	}
+    unlink(IMAGE_MGMT_IMAGE_DIR . $url); // Delete the image file
+    return $result;
+  }
+  else {
+    define('THEME_OPTIONS_POST_RESULTS', 'persmission_denied');
+  }
 }
 
 function edit_images($table_name, $name, $url, $size, $description, $tags) {
-	global $wpdb;
-	$insert = "UPDATE " . $table_name . " SET ";
-	$insert .= "name='" . $name . "'";
-	if ($size != 0)	$insert .= ", size='" . $size . "'";
-	$insert .= ", description='" . $description . "'";
-	$insert .= ", tags='" . serialize($tags) . "'";
-	$insert .= " WHERE url='" . $url . "'";
-	return $wpdb->query( $insert );
+  global $wpdb;
+  $insert = "UPDATE " . $table_name . " SET ";
+  $insert .= "name='" . $name . "'";
+  if ($size != 0)  $insert .= ", size='" . $size . "'";
+  $insert .= ", description='" . $description . "'";
+  $insert .= ", tags='" . serialize($tags) . "'";
+  $insert .= " WHERE url='" . $url . "'";
+  return $wpdb->query( $insert );
 }
 
 function image_management_inserter($image_name) {

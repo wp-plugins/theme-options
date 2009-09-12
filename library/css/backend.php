@@ -13,6 +13,7 @@ function theme_options_style() {
 .author-column { min-width: 5em; }
 
 .color_member { cursor:pointer; }
+.medium-text { width: 100px; }
 </style>
 <?php
 }

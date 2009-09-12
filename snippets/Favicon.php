@@ -19,7 +19,7 @@ function favicon_snippet_page() {
           <th scope="row"><label for="<?php echo $favicon_name; ?>"><?php _e('Favicon Image URL'); ?></label></th>
           <td>
             <?php do_action('favicon_before_input'); ?>
-            <input type="text" name="<?php echo $favicon_name; ?>" value="<?php echo $favicon_url; ?>" />
+            <input type="text" name="<?php echo $favicon_name; ?>" value="<?php echo $favicon_url; ?>" /><?php do_action('image_url_input', $favicon_name); ?>
             <?php do_action('favicon_after_input'); ?>
             <span class="setting-description"><?php _e('Image must be in ICO format, not: JPG, GIF, or PNG.'); ?></span>
           </td>
@@ -46,5 +46,10 @@ function favicon_snippet_options($list, $name = NULL) {
   return $list;
 }
 add_filter('snippet_options_list', 'favicon_snippet_options');
+
+function favicon_needs_thickbox() {
+  add_thickbox();
+}
+add_action('init', 'favicon_needs_thickbox');
 
 ?>

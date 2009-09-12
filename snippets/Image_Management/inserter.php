@@ -66,8 +66,8 @@ if ($_GET['tab'] && $_GET['item']) {
   </table>
   <script type='text/javascript'>
   jQuery(document).ready( function() {
-    jQuery('.inline a').attr('href', '#');
-    jQuery('.inline a').click(function () { 
+    jQuery('.inline a').click(function (e) {
+      e.preventDefault();
       var image_name = jQuery(this).parent().attr('title');
       jQuery("input[name='<?php echo $_GET['item']; ?>']").attr("value",image_name);
       tb_remove();
