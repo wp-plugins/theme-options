@@ -6,6 +6,8 @@
  *
  */
 function theme_options_snippets_post() {
+	if (! wp_verify_nonce($_REQUEST['_wpnonce'], 'theme_options') ) die('Security check');
+
 	$task = 'passed';
 	if( isset($_REQUEST['action']) && !empty($_REQUEST['action']) ) $action = $_REQUEST['action'];
 
@@ -30,5 +32,5 @@ function theme_options_snippets_post() {
 }
 /*
  * A cell does its task not for its self, but for me. So I do my task not for myself, but for the greater good.
-*/
+ */
 ?>

@@ -16,7 +16,7 @@ function togglebox() {
 jQuery(document).ready( function() {
 	jQuery('.postbox').addClass('closed');
 	jQuery('.postbox h3').not('.postbox h3 select').click( function() {
-       		jQuery(jQuery(this).parent().get(0)).toggleClass('closed');
+		jQuery(jQuery(this).parent().get(0)).toggleClass('closed');
 		jQuery(jQuery(this).parent().get(1)).toggleClass('closed');
 	});
 

@@ -41,7 +41,7 @@ Every code snippet needs to use WordPress' Hook actions and filters, but if the 
 
 = What themes will the default snippets work for? =
 
-They work for any modern, up-to-date theme.
+They will generally work for any modern, up-to-date theme. The custom header logo requires the "theme_header" hook to remove the title and description.
 
 = What is required to create my own code snippet =
 
@@ -61,6 +61,11 @@ By activating the Image Management snippet and using it to manage your images, y
 2. Code snippets can be edited throught the backend and are saved in the database, rather than in a file.
 
 == Changelog ==
+
+= Version 0.6 (October, 2009) =
+* Noted the requirements for Custom Header Logo
+* Improved the localization
+* Improved the uninstall file
 
 = Version 0.5 (September 11, 2009) =
 * Added Color Management Snippet
