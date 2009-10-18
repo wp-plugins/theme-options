@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=UQUZ6
 Tags: Code, Manager, Extension, Theme, Images, Comments, CSS, Formatting
 Requires at least: 2.8
 Tested up to: 2.8.4
-Stable tag: 0.5
+Stable tag: 0.7
 
 This plugin manages theme customizations.
 
@@ -55,6 +55,10 @@ This plugin will automatically turn off any code snippet if it causes a fatal er
 
 By activating the Image Management snippet and using it to manage your images, you can do away with messing with URLs. Option pages that have thickbox running and have `<?php do_action('image_url_input', 'THE_TEXTBOX_NAME'); ?>` after each textbox that deals with images, will for those form fields have an image icon that allows you to select an image visually. 
 
+= My images or colors disappeared when I updated, what happened?
+
+There was a problem with the naming of the tables for two snippets, so their names were changed. You either need to rename the MySQL tables in your database or re-upload the images and re-create the colors.
+
 == Screenshots ==
 
 1. The Theme Options Plugin manages code, unlike other methods in which unrelated code gets mixed together.
@@ -62,10 +66,17 @@ By activating the Image Management snippet and using it to manage your images, y
 
 == Changelog ==
 
-= Version 0.6 (October, 2009) =
+= Version 0.7 (October 17, 2009) = 
+* Fixed uninstall bug
+* Fixed border properties bug in Format Snippet
+
+= Version 0.6 (October 10, 2009) =
 * Noted the requirements for Custom Header Logo
 * Improved the localization
 * Improved the uninstall file
+* Changed Image Management table name
+* Changed Color Management table name
+* Changed from space indenting to tab indenting
 
 = Version 0.5 (September 11, 2009) =
 * Added Color Management Snippet
