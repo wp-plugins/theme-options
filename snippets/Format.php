@@ -95,7 +95,7 @@ function format_snippet() {
 				echo "font-family: " . get_option($type . $name . '_font-family') . "; ";
 			}
 			if (get_option($type . $name . '_font-size') != NULL ) {
-				echo "font-size: " . get_option($type . $name . '_font-size') . "; ";
+				echo "font-size: " . get_option($type . $name . '_font-size') . "em; ";
 			}
 			if (get_option($type . $name . '_font-weight') != NULL ) {
 				echo "font-weight: " . get_option($type . $name . '_font-weight') . "; ";
@@ -108,22 +108,22 @@ function format_snippet() {
 			}
 
 			// Border
-			if (get_option($type . $name . '_border-top') != NULL ) {
-				echo "border-left: " . get_option($type . $name . '_border-top') . "%; ";
+			if (get_option($type . $name . '_border-top_style') != NULL ) {
+				echo "border-top: " . get_option($type . $name . '_border-top_width') . " " . get_option($type . $name . '_border-top_style') . " " . get_option($type . $name . '_border-top_color') . "; ";
 			}
-			if (get_option($type . $name . '_border-right') != NULL ) {
-				echo "border-right: " . get_option($type . $name . '_border-right') . "%; ";
+			if (get_option($type . $name . '_border-right_style') != NULL ) {
+				echo "border-right: " . get_option($type . $name . '_border-right') . " " . get_option($type . $name . '_border-right_style') . " " . get_option($type . $name . '_border-right_color') . "; ";
 			}
-			if (get_option($type . $name . '_border-bottom') != NULL ) {
-				echo "border-bottom: " . get_option($type . $name . '_border-bottom') . "%; ";
+			if (get_option($type . $name . '_border-bottom_style') != NULL ) {
+				echo "border-bottom: " . get_option($type . $name . '_border-bottom') . " " . get_option($type . $name . '_border-bottom_style') . " " . get_option($type . $name . '_border-bottom_color') . "; ";
 			}
-			if (get_option($type . $name . '_border-left') != NULL ) {
-				echo "border-left: " . get_option($type . $name . '_border-left') . "%; ";
+			if (get_option($type . $name . '_border-left_style') != NULL ) {
+				echo "border-left: " . get_option($type . $name . '_border-left') . " " . get_option($type . $name . '_border-left_style') . " " . get_option($type . $name . '_border-left_color') . "; ";
 			}
 
 			// Padding
 			if (get_option($type . $name . '_padding-top') != NULL ) {
-				echo "padding-left: " . get_option($type . $name . '_padding-top') . "%; ";
+				echo "padding-top: " . get_option($type . $name . '_padding-top') . "%; ";
 			}
 			if (get_option($type . $name . '_padding-right') != NULL ) {
 				echo "padding-right: " . get_option($type . $name . '_padding-right') . "%; ";
